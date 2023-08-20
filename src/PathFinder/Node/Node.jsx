@@ -3,22 +3,24 @@ import "./Node.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SportsScoreIcon from "@mui/icons-material/SportsScore";
 import { green, red } from "@mui/material/colors";
+import PersonPinIcon from "@mui/icons-material/PersonPin";
 
 function Node(props) {
   const { currentNode } = props;
-
-
+  
+  
   return (
     <div className={`node`}>
-      {currentNode.startNode && (
-        <LocationOnIcon
-          sx={{ color: green[600] }}
-          fontSize="large"
-          className="startIcon"
-        />
-      )}
+
+        {currentNode.startNode && (
+          <PersonPinIcon
+            sx={{ color: green[600] }}
+            fontSize="large"
+            className="startIcon"
+          />
+        )}
       {currentNode.finishNode && (
-        <SportsScoreIcon
+        <LocationOnIcon
           sx={{ color: red[600] }}
           fontSize="large"
           className="startIcon"

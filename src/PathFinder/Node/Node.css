@@ -1,12 +1,15 @@
 .node {
-    width: 30px;
-    height: 30px;
+    width: 33px;
+    height: 33px;
     outline: 2px solid black;
-    display: inline-block;
 }
 
 .startIcon{
     position: absolute;
+}
+.css-1cy2ic9-MuiSvgIcon-root{
+    margin-top: 2px;
+    margin-left: 2px;
 }
 
 .finish-node {
