@@ -10,7 +10,7 @@ function PathFinderGrid() {
   const [isMouseDown, setIsMouseDown] = useState([false, ""]);
 
   const activateMouseState = (node) => {
-    const nodeType = node.startNode ? "start" : ""; 
+    const nodeType = node.startNode ? "start" : node.finishNode ? "finish" : "";
     if (node.startNode || node.finishNode) setIsMouseDown([true, nodeType]);
   };
   const deactivateMouseState = (node) => {
@@ -19,8 +19,16 @@ function PathFinderGrid() {
 
   const getCoordinates = (node) => {
     if (isMouseDown[0]) {
-      if (isMouseDown[1] === "start") setStart([node.row, node.col]);
-      else setFinsih([node.row, node.col]);
+      if (
+        isMouseDown[1] === "start" &&
+        JSON.stringify([node.row, node.col]) !== JSON.stringify(finishNode)
+      )
+        setStart([node.row, node.col]);
+      else if (
+        isMouseDown[1] === "finish" &&
+        JSON.stringify([node.row, node.col]) !== JSON.stringify(startNode)
+      )
+        setFinsih([node.row, node.col]);
     }
   };
 
@@ -32,11 +40,13 @@ function PathFinderGrid() {
         row,
         startNode: row === startNode[0] && col === startNode[1],
         finishNode: row === finishNode[0] && col === finishNode[1],
+        distance: Infinity,
+        previousNode: null,
       };
       nodes[row].push(currentNode);
     }
   }
-
+  console.log(nodes);
   return (
     <div className="grid">
       {nodes.map((row, rowIndex) => (
