@@ -7,18 +7,16 @@ import PersonPinIcon from "@mui/icons-material/PersonPin";
 
 function Node(props) {
   const { currentNode } = props;
-  
-  
-  return (
-    <div className={`node`}>
 
-        {currentNode.startNode && (
-          <PersonPinIcon
-            sx={{ color: green[600] }}
-            fontSize="large"
-            className="startIcon"
-          />
-        )}
+  return (
+    <div id={`node-${currentNode.row}-${currentNode.col}`}>
+      {currentNode.startNode && (
+        <PersonPinIcon
+          sx={{ color: green[600] }}
+          fontSize="large"
+          className="startIcon"
+        />
+      )}
       {currentNode.finishNode && (
         <LocationOnIcon
           sx={{ color: red[600] }}
