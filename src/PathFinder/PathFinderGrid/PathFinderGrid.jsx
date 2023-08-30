@@ -40,7 +40,7 @@ function PathFinderGrid() {
 
   for (let row = 0; row <= 15; row++) {
     nodes.push([]);
-    for (let col = 0; col <= 37; col++) {
+    for (let col = 0; col <= 50; col++) {
       const currentNode = {
         col,
         row,
@@ -93,16 +93,14 @@ function PathFinderGrid() {
   };
 
   return (
-    <div>
+    <div class="lines">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
       <div className="grid">
-        <Button
-          onClick={startAlgorithm}
-          variant="outlined"
-          color="success"
-          endIcon={<PlayArrowIcon />}
-        >
-          Start
-        </Button>
+        <button class="button" onClick={startAlgorithm}>
+          Visualize
+        </button>
         {nodes.map((row, rowIndex) => (
           <div className="row">
             {row.map((node, nodeIndex) => (

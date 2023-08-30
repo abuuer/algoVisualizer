@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Node.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SportsScoreIcon from "@mui/icons-material/SportsScore";
-import { green, red } from "@mui/material/colors";
+import { lightGreen, deepOrange } from "@mui/material/colors";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 
 function Node(props) {
@@ -12,15 +12,15 @@ function Node(props) {
     <div id={`node-${currentNode.row}-${currentNode.col}`}>
       {currentNode.startNode && (
         <PersonPinIcon
-          sx={{ color: green[600] }}
-          fontSize="large"
+          sx={{ color: lightGreen[700] }}
+          fontSize="medium"
           className="startIcon"
         />
       )}
       {currentNode.finishNode && (
         <LocationOnIcon
-          sx={{ color: red[600] }}
-          fontSize="large"
+          sx={{ color: deepOrange[500] }}
+          fontSize="medium"
           className="startIcon"
         />
       )}
