@@ -109,26 +109,35 @@ body {
     white-space: nowrap;
 }
 
-.button:focus {
+.button:not([disabled]):focus {
     text-decoration: none;
 }
 
-.button:hover {
+.button:not([disabled]):hover {
     text-decoration: none;
 }
 
-.button:active {
+.button:not([disabled]):active {
     box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
     outline: 0;
-}
+} 
 
 .button:not([disabled]):active {
     box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
     transform: translate(2px, 2px);
 }
 
+.button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
 @media (min-width: 768px) {
     .button {
         padding: 12px 50px;
     }
+}
+
+.animation-on {
+    pointer-events: none;
 }

@@ -7,6 +7,7 @@
 .startIcon{
     position: absolute;
 }
+
 .css-1cy2ic9-MuiSvgIcon-root{
     margin-top: 2px;
     margin-left: 2px;
@@ -79,4 +80,8 @@
         transform: scale(1);
         background-color: rgb(235, 240, 142);
     }
+}
+
+.animation-on {
+    pointer-events: none;
 }

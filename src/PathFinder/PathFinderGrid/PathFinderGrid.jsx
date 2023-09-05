@@ -4,6 +4,7 @@ import Bar from "../Bar/Bar";
 import "./PathFinderGrid.css";
 import { Button } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import {
   dijkstra,
   getNodesInShortestPathOrder,
@@ -14,6 +15,14 @@ function PathFinderGrid() {
   const [startNode, setStart] = useState([7, 4]);
   const [finishNode, setFinsih] = useState([7, 33]);
   const [isMouseDown, setIsMouseDown] = useState([false, ""]);
+  const [visitedNodesInOrder, setVisitedNodesInOrder] = useState([]);
+  const [nodesInShortestPathOrder, setNodesInShortestPathOrder] = useState([]);
+  const [isRestartDisabled, setIsRestartDisabled] = useState(true);
+  const [pointerEvent, setPointerEvent] = useState("");
+
+  useEffect(() => {
+    animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+  }, [visitedNodesInOrder, nodesInShortestPathOrder]);
 
   const activateMouseState = (node) => {
     const nodeType = node.startNode ? "start" : node.finishNode ? "finish" : "";
@@ -54,19 +63,28 @@ function PathFinderGrid() {
   }
 
   const startAlgorithm = () => {
-    const visitedNodesInOrder = dijkstra(
-      nodes,
-      nodes[startNode[0]][startNode[1]],
-      nodes[finishNode[0]][finishNode[1]]
+    setPointerEvent("animation-on");
+    setVisitedNodesInOrder(
+      dijkstra(
+        nodes,
+        nodes[startNode[0]][startNode[1]],
+        nodes[finishNode[0]][finishNode[1]]
+      )
     );
-
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(
-      nodes[finishNode[0]][finishNode[1]]
+    setNodesInShortestPathOrder(
+      getNodesInShortestPathOrder(nodes[finishNode[0]][finishNode[1]])
     );
-    animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+  };
+  const restartAlgorithm = () => {
+    // setVisitedNodesInOrder([]);
+    // setNodesInShortestPathOrder([]);
+    clearAnimation();
+    setPointerEvent("");
   };
 
   const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {
+    setIsRestartDisabled(true);
+
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
@@ -82,13 +100,20 @@ function PathFinderGrid() {
     }
   };
 
-  const animateShortestPath = (nodesInShortestPathOrder) => {
-    for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+  const animateShortestPath = async (nodesInShortestPathOrder) => {
+    await nodesInShortestPathOrder.forEach((node) => {
       setTimeout(() => {
-        const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-shortest-path";
-      }, 50 * i);
+      }, 50);
+    });
+    setIsRestartDisabled(false);
+  };
+
+  const clearAnimation = () => {
+    for (let i = 0; i < visitedNodesInOrder.length; i++) {
+      const node = visitedNodesInOrder[i];
+      document.getElementById(`node-${node.row}-${node.col}`).className = "";
     }
   };
 
@@ -101,11 +126,18 @@ function PathFinderGrid() {
         <button class="button" onClick={startAlgorithm}>
           Visualize
         </button>
+        <button
+          class="button"
+          onClick={restartAlgorithm}
+          disabled={isRestartDisabled}
+        >
+          Restart
+        </button>
         {nodes.map((row, rowIndex) => (
           <div className="row">
             {row.map((node, nodeIndex) => (
               <div
-                className="node"
+                className={`node ${pointerEvent}`}
                 onMouseDown={() => activateMouseState(node)}
                 onMouseUp={() => deactivateMouseState(false)}
                 onMouseEnter={() => getCoordinates(node)}
