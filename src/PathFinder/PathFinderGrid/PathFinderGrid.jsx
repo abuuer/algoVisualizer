@@ -100,7 +100,7 @@ function PathFinderGrid() {
     setIsWallButnDisabled(true);
     setIsVisButnDisabled(true);
     setIsMouseDown([false, ""]);
-    updateIconsAnimation("");
+    updateIconsAnimation("icons-pointer-event");
     const visitedNodesInOrder = dijkstra(
       nodes,
       nodes[startNode[0]][startNode[1]],
