@@ -97,6 +97,7 @@ function PathFinderGrid() {
   };
 
   const startAlgorithm = async () => {
+    setIsAddWall(false);
     setIsWallButnDisabled(true);
     setIsVisButnDisabled(true);
     setIsMouseDown([false, ""]);
