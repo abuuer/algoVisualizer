@@ -1,11 +1,8 @@
-import './App.css';
-import PathFinderGrid from './PathFinder/PathFinderGrid/PathFinderGrid';
-
+import "./App.css";
+import PathFinderGrid from "./PathFinder/PathFinderGrid/PathFinderGrid";
 
 function App() {
-  return (   
-    <PathFinderGrid></PathFinderGrid> 
-  );
+  return <PathFinderGrid></PathFinderGrid>;
 }
 
 export default App;
