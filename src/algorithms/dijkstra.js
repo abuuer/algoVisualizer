@@ -2,11 +2,10 @@ export function dijkstra(nodes, startNode, finishNode) {
   let unvisitedNodes = getAllNodes(nodes);
   startNode.distance = 0;
   let visitedNodes = [];
-
   while (unvisitedNodes.length) {
     sortUnvisitedNodes(unvisitedNodes);
     const closestNode = unvisitedNodes.shift();
-
+    if (closestNode.wall) continue;
     if (closestNode.distance === Infinity) return visitedNodes;
     closestNode.isVisited = true;
     visitedNodes.push(closestNode);
