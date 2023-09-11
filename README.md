@@ -1,12 +1,12 @@
 # AlgoVisualizer
 
-Algo Visualizer is a web application built with React that allows users to visualize path-finding algorithms to find the shortest path between two points on a grid. It provides an interactive and educational way to understand how these algorithms work.
+AlgoVisualizer is a web application built with React that allows users to visualize path-finding algorithms to find the shortest path between two points on a grid. It provides an interactive and educational way to understand how these algorithms work.
 
 ## Demo 
 
 You can access a live demo of AlgoVisualizer at https://abuuer.github.io/algoVisualizer.
 
-![demo](public\Animation.gif)
+![demo](public/Animation.gif)
 
 ## Features
 
