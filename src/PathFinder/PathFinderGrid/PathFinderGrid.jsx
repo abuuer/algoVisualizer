@@ -51,7 +51,6 @@ function PathFinderGrid() {
       : "wall";
 
     setMouseState({ isMouseDown: true, nodeType: nodeType });
-    console.log(mouseState);
   };
   // Updates the node's row and column on mouse enter
   const getCoordinates = async (node) => {
