@@ -17,6 +17,11 @@ body {
     color: #000;
     position: relative;
     font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    min-height: 100vh;
 }
 
 .line {
@@ -69,9 +74,14 @@ body {
     }
 }
 .grid {
-    margin: 30px 30px ;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
 }
 
+.buttons {
+    text-align: left;
+}
 .node {
     display: inline-block;
 }
