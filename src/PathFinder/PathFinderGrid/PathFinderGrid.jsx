@@ -11,8 +11,8 @@ import _ from "lodash";
 
 function PathFinderGrid() {
   const [nodes, setNodes] = useState([]);
-  const [startNode, setStartNode] = useState({ row: 10, col: 5 });
-  const [finishNode, setFinsih] = useState({ row: 10, col: 45 });
+  const [startPosition, setStartPosition] = useState({ row: 10, col: 5 });
+  const [finishPosition, setFinsihPosition] = useState({ row: 10, col: 45 });
   const [mouseState, setMouseState] = useState({
     isMouseDown: false,
     nodeType: "",
@@ -44,9 +44,9 @@ function PathFinderGrid() {
   // Gets the node type on mouse down
   const activateMouseState = async (node) => {
     const { row, col } = node;
-    const nodeType = _.isEqual({ row, col }, startNode)
+    const nodeType = _.isEqual({ row, col }, startPosition)
       ? "start"
-      : _.isEqual({ row, col }, finishNode)
+      : _.isEqual({ row, col }, finishPosition)
       ? "finish"
       : "wall";
 
@@ -58,8 +58,8 @@ function PathFinderGrid() {
     if (mouseState.isMouseDown && !isVisButnDisabled) {
       if (
         mouseState.nodeType === "wall" &&
-        !_.isEqual({ row, col }, startNode) &&
-        !_.isEqual({ row, col }, finishNode)
+        !_.isEqual({ row, col }, startPosition) &&
+        !_.isEqual({ row, col }, finishPosition)
       ) {
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-wall";
@@ -67,26 +67,25 @@ function PathFinderGrid() {
       } else if (
         mouseState.nodeType === "start" &&
         !node.wall &&
-        !_.isEqual({ row, col }, finishNode)
+        !_.isEqual({ row, col }, finishPosition)
       ) {
-        setStartNode({ row: node.row, col: node.col });
+        setStartPosition({ row: node.row, col: node.col });
       } else if (
         mouseState.nodeType === "finish" &&
         !node.wall &&
-        !_.isEqual({ row, col }, startNode)
+        !_.isEqual({ row, col }, startPosition)
       ) {
-        setFinsih({ row: node.row, col: node.col });
+        setFinsihPosition({ row: node.row, col: node.col });
       }
     }
   };
   // Stops getCoordinates() when mouse is up
   const deactivateMouseState = () => {
-    setMouseState({ ...mouseState, isMouseDown: false, nodeType: "" });
+    setMouseState({ isMouseDown: false, nodeType: "" });
   };
 
   // Updates a given prop of a given node
   const updateNodeProperty = async (row, col, propName, propValue) => {
-    console.log(row);
     setNodes((prevNodes) => {
       return prevNodes.map((nodeRow, rowIndex) => {
         return nodeRow.map((node, colIndex) => {
@@ -102,15 +101,11 @@ function PathFinderGrid() {
 
   const startAlgorithm = async () => {
     setIsVisButnDisabled(true);
-    setMouseState({ ...mouseState, isMouseDown: false, nodeType: "" });
+    setMouseState({ isMouseDown: false, nodeType: "" });
     updateIconsAnimation("icons-pointer-event");
-    const visitedNodesInOrder = dijkstra(
-      nodes,
-      nodes[startNode.row][startNode.col],
-      nodes[finishNode.row][finishNode.col]
-    );
+    const visitedNodesInOrder = dijkstra(nodes, startPosition, finishPosition);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(
-      nodes[finishNode.row][finishNode.col]
+      nodes[finishPosition.row][finishPosition.col]
     );
     animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   };
@@ -163,10 +158,10 @@ function PathFinderGrid() {
   // Update start/finish icons' css
   const updateIconsAnimation = (className) => {
     document
-      .getElementById(`node-${startNode.row}-${startNode.col}`)
+      .getElementById(`node-${startPosition.row}-${startPosition.col}`)
       .querySelector("div").className = `icon ${className}`;
     document
-      .getElementById(`node-${finishNode.row}-${finishNode.col}`)
+      .getElementById(`node-${finishPosition.row}-${finishPosition.col}`)
       .querySelector("div").className = `icon ${className}`;
   };
 
@@ -203,16 +198,17 @@ function PathFinderGrid() {
                   onMouseUp={() => deactivateMouseState()}
                   onMouseEnter={() => getCoordinates(node)}
                 >
-                  {node.row === startNode.row && node.col === startNode.col && (
-                    <div className="icon icons-animation">
-                      <PersonPinIcon
-                        sx={{ color: lightGreen[700] }}
-                        fontSize="medium"
-                      />
-                    </div>
-                  )}
-                  {node.row === finishNode.row &&
-                    node.col === finishNode.col && (
+                  {node.row === startPosition.row &&
+                    node.col === startPosition.col && (
+                      <div className="icon icons-animation">
+                        <PersonPinIcon
+                          sx={{ color: lightGreen[700] }}
+                          fontSize="medium"
+                        />
+                      </div>
+                    )}
+                  {node.row === finishPosition.row &&
+                    node.col === finishPosition.col && (
                       <div className="icon icons-animation">
                         <LocationOnIcon
                           sx={{ color: deepOrange[500] }}

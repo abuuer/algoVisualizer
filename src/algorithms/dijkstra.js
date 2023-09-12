@@ -1,5 +1,7 @@
-export function dijkstra(nodes, startNode, finishNode) {
+export function dijkstra(nodes, startPosition, finishPosition) {
   let unvisitedNodes = getAllNodes(nodes);
+  let startNode = nodes[startPosition.row][startPosition.col];
+  let finishNode = nodes[finishPosition.row][finishPosition.col];
   startNode.distance = 0;
   let visitedNodes = [];
   while (unvisitedNodes.length) {
