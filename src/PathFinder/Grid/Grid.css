@@ -124,11 +124,31 @@ body {
     background-color: green;
 }
 .current-node {
-    background-color: #866d27;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
+animation-name: glowingEffect;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  background-color: #5ee73c; /* Change to the color you want for currently visiting nodes */
+  color: #ffffff;
+  opacity: 0.8;
+}
+@keyframes glowingEffect {
+    0% {
+        box-shadow: 0 0 5px 2px rgba(128, 231, 60, 0.7);
+        /* Initial shadow */
+    }
+
+    50% {
+        box-shadow: 0 0 10px 5px rgba(128, 231, 60, 0.9);
+        /* Intermediate shadow */
+    }
+
+    100% {
+        box-shadow: 0 0 5px 2px rgba(128, 231, 60, 0.7);
+        /* Final shadow */
+    }
 }
 .node-visited {
     animation-name: visitedAnimation;

@@ -10,6 +10,12 @@
 .select {
     display: flex;
 }
+.slider{
+    color: rgba(255, 255, 255, 0.767);
+    width: 200px;
+    margin: 0 40px;
+}
+
 .button {
     appearance: button;
     background-color: #63617a;
@@ -66,20 +72,6 @@
     }
 }
 
-/* .select-menu {
-    background-color: #63617a;
-    background-image: none;
-    border: 1px solid #000;
-    border-radius: 4px;
-    color: #fff;
-    display: inline-block;
-    font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    padding: 12px 40px;
-    font-family: "Roboto", arial, sans-serif;
-} */
 :root {
     --glass: #63617a;
     --glass-icon: #63617ac4;
@@ -88,12 +80,10 @@
 }
 
 select {
-    /* Reset */
     appearance: none;
     border: 0;
     outline: 0;
     font: inherit;
-    /* Personalize */
     width: 15em;
     height: 3em;
     padding: 0 4em 0 1em;
@@ -106,18 +96,15 @@ select {
     opacity: 0.7;
 }
 
-/* <option> colors */
 select option {
     color: inherit;
     background-color: var(--option);
 }
 
-/* Remove focus outline */
 select:focus {
     outline: none;
 }
 
-/* Remove IE arrow */
 select::-ms-expand {
     display: none;
 }

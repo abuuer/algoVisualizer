@@ -1,4 +1,15 @@
+import { Slider } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { lime } from "@mui/material/colors";
 import "./Bar.css";
+
+const theme = createTheme({
+  palette: {
+    primary: { main: "#63617a" },
+  },
+});
+
+const speed = { '1': 110, '2': 60, '3': 10 };
 
 function Bar(props) {
   const {
@@ -7,13 +18,21 @@ function Bar(props) {
     setAlgorithmName,
     isVisButnDisabled,
     isRestartDisabled,
+    setAlgorithmSpeed,
   } = props;
+
+  const handleAlgorithmSpeed = (e, value) => {
+    if (speed.hasOwnProperty(value)) {
+      setAlgorithmSpeed(speed[value]);
+    }
+  };
   return (
     <div>
       <div className="bar">
         <div className="select">
           <select
             className="select-menu"
+            disabled={isVisButnDisabled}
             onChange={(event) => setAlgorithmName(event.target.value)}
           >
             <option value="DIJKSTRA">Dijkstra's Algorithm</option>
@@ -22,6 +41,24 @@ function Bar(props) {
             <option value="DFS">Depth-first search</option>
             <option value="GBFS">Greedy Best-First Search</option>
           </select>
+          <div className="slider">
+            Speed:
+            <ThemeProvider theme={theme}>
+              <Slider
+                aria-label="Speed"
+                // getAriaValueText={valuetext}
+                valueLabelDisplay="off"
+                step={1}
+                min={1}
+                max={3}
+                defaultValue={3}
+                color="primary"
+                disabled={isVisButnDisabled}
+                marks
+                onChange={handleAlgorithmSpeed}
+              />
+            </ThemeProvider>
+          </div>
         </div>
         <div className="buttons">
           <button

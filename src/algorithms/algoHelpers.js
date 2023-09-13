@@ -29,13 +29,6 @@ function getUnvisitedNeighbors(closestNode, nodes) {
   if (row < nodes.length - 1) neighbors.push(nodes[row + 1][col]);
   if (col > 0) neighbors.push(nodes[row][col - 1]);
   if (col < nodes[0].length - 1) neighbors.push(nodes[row][col + 1]);
-//   if (col > 0 && row > 0) neighbors.push(nodes[row - 1][col - 1]);
-//   if (col < nodes[0].length - 1 && row > 0)
-//     neighbors.push(nodes[row - 1][col + 1]);
-//   if (col > 0 && row < nodes[0].length - 1)
-//     neighbors.push(nodes[row + 1][col - 1]);
-//   if (col < nodes[0].length - 1 && row < nodes[0].length - 1)
-//     neighbors.push(nodes[row + 1][col + 1]);
   return neighbors.filter((neighbor) => !neighbor.isVisited);
 }
 

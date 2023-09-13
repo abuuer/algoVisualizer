@@ -20,7 +20,6 @@ const algorithms = {
   GBFS: "Greedy Best-First Search",
 };
 
-
 function Grid() {
   const [nodes, setNodes] = useState([]);
   const [startPosition, setStartPosition] = useState({ row: 10, col: 5 });
@@ -32,6 +31,7 @@ function Grid() {
   const [isRestartDisabled, setIsRestartDisabled] = useState(true);
   const [isVisButnDisabled, setIsVisButnDisabled] = useState(false);
   const [algorithmName, setAlgorithmName] = useState("DIJKSTRA");
+  const [algorithmSpeed, setAlgorithmSpeed] = useState(10);
 
   useEffect(() => {
     const initialNodes = [];
@@ -146,7 +146,7 @@ function Grid() {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
+        }, algorithmSpeed * i);
         return;
       }
       setTimeout(() => {
@@ -156,8 +156,8 @@ function Grid() {
         setTimeout(() => {
           document.getElementById(`node-${node.row}-${node.col}`).className =
             "node node-visited";
-        }, 10 );
-      }, 10 * i);
+        }, algorithmSpeed);
+      }, algorithmSpeed * i);
     }
   };
 
@@ -211,9 +211,9 @@ function Grid() {
           startAlgorithm={startAlgorithm}
           restartAlgorithm={restartAlgorithm}
           setAlgorithmName={setAlgorithmName}
-          algorithmName={algorithmName}
           isVisButnDisabled={isVisButnDisabled}
           isRestartDisabled={isRestartDisabled}
+          setAlgorithmSpeed={setAlgorithmSpeed}
         ></Bar>
         <div>
           {nodes.map((row, rowIndex) => (
