@@ -1,0 +1,123 @@
+.bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+}
+.select {
+    display: flex;
+}
+.button {
+    appearance: button;
+    background-color: #63617a;
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0 5px 10px 0;
+    overflow: visible;
+    padding: 12px 40px;
+    text-align: center;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button:not([disabled]):focus {
+    text-decoration: none;
+}
+
+.button:not([disabled]):hover {
+    text-decoration: none;
+}
+
+.button:not([disabled]):active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.button:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+@media (min-width: 768px) {
+    .button {
+        padding: 12px 50px;
+    }
+}
+
+/* .select-menu {
+    background-color: #63617a;
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 12px 40px;
+    font-family: "Roboto", arial, sans-serif;
+} */
+:root {
+    --glass: #63617a;
+    --glass-icon: #63617ac4;
+    --gradient: linear-gradient(35deg, red, rgb(128, 0, 21));
+    --option: #63617a;
+}
+
+select {
+    /* Reset */
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    /* Personalize */
+    width: 15em;
+    height: 3em;
+    padding: 0 4em 0 1em;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center / 1.4em,
+        linear-gradient(to left, var(--glass-icon) 3em, var(--glass) 3em);
+    color: rgba(255, 255, 255, 0.767);
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+/* <option> colors */
+select option {
+    color: inherit;
+    background-color: var(--option);
+}
+
+/* Remove focus outline */
+select:focus {
+    outline: none;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+    display: none;
+}

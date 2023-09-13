@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
-import "./PathFinderGrid.css";
+import "./Grid.css";
 import {
   dijkstra,
-  getNodesInShortestPathOrder,
 } from "../../algorithms/dijkstra";
+import { astar } from "../../algorithms/astar";
+import { getNodesInShortestPathOrder } from "../../algorithms/algoHelpers";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { lightGreen, deepOrange } from "@mui/material/colors";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
-import _ from "lodash";
+import Bar from "../Bar/Bar";
+import _ from "lodash"
 
-function PathFinderGrid() {
+
+const algorithms = {
+  DIJKSTRA: "Dijkstra's Algorithm",
+  AS: "A* Search",
+  BFS: "Breadth-first search",
+  DFS: "Depth-first search",
+  GBFS: "Greedy Best-First Search",
+};
+
+
+function Grid() {
   const [nodes, setNodes] = useState([]);
   const [startPosition, setStartPosition] = useState({ row: 10, col: 5 });
   const [finishPosition, setFinsihPosition] = useState({ row: 10, col: 45 });
@@ -19,6 +31,7 @@ function PathFinderGrid() {
   });
   const [isRestartDisabled, setIsRestartDisabled] = useState(true);
   const [isVisButnDisabled, setIsVisButnDisabled] = useState(false);
+  const [algorithmName, setAlgorithmName] = useState("DIJKSTRA");
 
   useEffect(() => {
     const initialNodes = [];
@@ -32,6 +45,8 @@ function PathFinderGrid() {
           distance: Infinity,
           previousNode: null,
           wall: false,
+          heuristic: null,
+          sum_h_distance: Infinity,
         };
         rowNodes.push(currentNode);
       }
@@ -100,10 +115,25 @@ function PathFinderGrid() {
   };
 
   const startAlgorithm = async () => {
+    let visitedNodesInOrder = []
+    if (algorithms.hasOwnProperty(algorithmName)){
+      switch (algorithmName) {
+        case "DIJKSTRA":
+          visitedNodesInOrder = dijkstra(nodes, startPosition, finishPosition);
+          break;
+        case "AS":
+          visitedNodesInOrder = astar(nodes, startPosition, finishPosition);
+          break;
+        default:
+          break;
+      }
+    }
+      
+    
     setIsVisButnDisabled(true);
     setMouseState({ isMouseDown: false, nodeType: "" });
     updateIconsAnimation("icons-pointer-event");
-    const visitedNodesInOrder = dijkstra(nodes, startPosition, finishPosition);
+    
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(
       nodes[finishPosition.row][finishPosition.col]
     );
@@ -122,7 +152,11 @@ function PathFinderGrid() {
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
-          "node node-visited";
+          "node current-node";
+        setTimeout(() => {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node node-visited";
+        }, 10 );
       }, 10 * i);
     }
   };
@@ -166,32 +200,27 @@ function PathFinderGrid() {
   };
 
   return (
-    <div class="container">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
+    <div className="container">
+      <div className="line"></div>
+      <div className="line"></div>
+      <div className="line"></div>
+      <div className="line"></div>
+      <div className="line"></div>
       <div className="grid">
-        <div className="buttons">
-          <button
-            class="button"
-            onClick={startAlgorithm}
-            disabled={isVisButnDisabled}
-          >
-            Visualize
-          </button>
-          <button
-            class="button"
-            onClick={restartAlgorithm}
-            disabled={isRestartDisabled}
-          >
-            Restart
-          </button>
-        </div>
+        <Bar
+          startAlgorithm={startAlgorithm}
+          restartAlgorithm={restartAlgorithm}
+          setAlgorithmName={setAlgorithmName}
+          algorithmName={algorithmName}
+          isVisButnDisabled={isVisButnDisabled}
+          isRestartDisabled={isRestartDisabled}
+        ></Bar>
         <div>
           {nodes.map((row, rowIndex) => (
-            <div className="row">
+            <div key={rowIndex} className="row">
               {row.map((node, nodeIndex) => (
                 <div
+                  key={nodeIndex}
                   id={`node-${node.row}-${node.col}`}
                   className="node"
                   onMouseDown={() => activateMouseState(node)}
@@ -226,4 +255,4 @@ function PathFinderGrid() {
   );
 }
 
-export default PathFinderGrid;
+export default Grid;
