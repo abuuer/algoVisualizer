@@ -10,12 +10,13 @@ export function astar(nodes, startPosition, finishPosition) {
     let finishNode = nodes[finishPosition.row][finishPosition.col];
     startNode.distance = 0;
     startNode.sum_h_distance = 0;
+    startNode.heuristic = 0;
     let visitedNodes = [];
     while (unvisitedNodes.length) {
       sortUnvisitedNodes(unvisitedNodes, "sum_h_distance");
       const closestNode = unvisitedNodes.shift();
       if (closestNode.wall) continue;
-      if (closestNode.distance === Infinity) return visitedNodes;
+      if (closestNode.sum_h_distance === Infinity) return visitedNodes;
       closestNode.isVisited = true;
       visitedNodes.push(closestNode);
       if (closestNode === finishNode) return visitedNodes;

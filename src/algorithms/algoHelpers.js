@@ -1,9 +1,11 @@
 const getNodesInShortestPathOrder = (finishNode) => {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
-  while (currentNode !== null) {
-    nodesInShortestPathOrder.unshift(currentNode);
-    currentNode = currentNode.previousNode;
+  if (currentNode.previousNode) {
+    while (currentNode !== null) {
+      nodesInShortestPathOrder.unshift(currentNode);
+      currentNode = currentNode.previousNode;
+    }
   }
   return nodesInShortestPathOrder;
 };

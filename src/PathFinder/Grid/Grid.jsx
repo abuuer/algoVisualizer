@@ -4,6 +4,7 @@ import {
   dijkstra,
 } from "../../algorithms/dijkstra";
 import { astar } from "../../algorithms/astar";
+import { bfs } from "../../algorithms/bfs";
 import { getNodesInShortestPathOrder } from "../../algorithms/algoHelpers";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { lightGreen, deepOrange } from "@mui/material/colors";
@@ -45,7 +46,7 @@ function Grid() {
           distance: Infinity,
           previousNode: null,
           wall: false,
-          heuristic: null,
+          heuristic: Infinity,
           sum_h_distance: Infinity,
         };
         rowNodes.push(currentNode);
@@ -124,12 +125,13 @@ function Grid() {
         case "AS":
           visitedNodesInOrder = astar(nodes, startPosition, finishPosition);
           break;
+        case "BFS":
+          visitedNodesInOrder = bfs(nodes, startPosition, finishPosition);
+          break;
         default:
           break;
       }
     }
-      
-    
     setIsVisButnDisabled(true);
     setMouseState({ isMouseDown: false, nodeType: "" });
     updateIconsAnimation("icons-pointer-event");

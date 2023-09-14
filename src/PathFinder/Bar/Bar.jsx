@@ -1,6 +1,5 @@
 import { Slider } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { lime } from "@mui/material/colors";
 import "./Bar.css";
 
 const theme = createTheme({
@@ -38,8 +37,8 @@ function Bar(props) {
             <option value="DIJKSTRA">Dijkstra's Algorithm</option>
             <option value="AS">A* Search</option>
             <option value="BFS">Breadth-first search</option>
-            <option value="DFS">Depth-first search</option>
-            <option value="GBFS">Greedy Best-First Search</option>
+            {/* <option value="DFS">Depth-first search</option>
+            <option value="GBFS">Greedy Best-First Search</option> */}
           </select>
           <div className="slider">
             Speed:
