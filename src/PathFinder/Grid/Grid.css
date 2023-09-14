@@ -88,9 +88,23 @@ body {
 }
 
 .node {
-    width: 25px;
+    width: 23px;
     height: 25px;
     outline: 1px solid #63617a;
+}
+
+@media only screen and (max-width: 900px) {
+
+    /* hide element on small screens */
+    .grid {
+        text-align: center;
+    }
+    .node {
+    width: 22px;
+    height: 25px;
+    outline: 1px solid #63617a;
+}
+
 }
 
 .icon {

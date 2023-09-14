@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Grid.css";
-import {
-  dijkstra,
-} from "../../algorithms/dijkstra";
+import { dijkstra } from "../../algorithms/dijkstra";
 import { heuristicAlgorithm } from "../../algorithms/heuristicAlgorithm";
 import { bfs } from "../../algorithms/bfs";
 import { dfs } from "../../algorithms/dfs";
@@ -11,8 +9,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { lightGreen, deepOrange } from "@mui/material/colors";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import Bar from "../Bar/Bar";
-import _ from "lodash"
-
+import _ from "lodash";
 
 const algorithms = {
   DIJKSTRA: "Dijkstra's Algorithm",
@@ -25,7 +22,7 @@ const algorithms = {
 function Grid() {
   const [nodes, setNodes] = useState([]);
   const [startPosition, setStartPosition] = useState({ row: 10, col: 5 });
-  const [finishPosition, setFinsihPosition] = useState({ row: 10, col: 45 });
+  const [finishPosition, setFinishPosition] = useState({ row: 10, col: 45 });
   const [mouseState, setMouseState] = useState({
     isMouseDown: false,
     nodeType: "",
@@ -35,27 +32,27 @@ function Grid() {
   const [algorithmName, setAlgorithmName] = useState("DIJKSTRA");
   const [algorithmSpeed, setAlgorithmSpeed] = useState(10);
 
+
   useEffect(() => {
-    const initialNodes = [];
+    const numColumns = calculateColumns();
 
-    for (let row = 0; row <= 20; row++) {
-      const rowNodes = [];
-      for (let col = 0; col <= 52; col++) {
-        const currentNode = {
-          col,
-          row,
-          distance: Infinity,
-          previousNode: null,
-          wall: false,
-          heuristic: Infinity,
-          fScore: Infinity,
-        };
-        rowNodes.push(currentNode);
+    setFinishPosition({ row: 10, col: numColumns - 5 });
+    setNodes(createInitialNodes(numColumns, 20));
+
+    const handleResize = () => {
+      const newNumColumns = calculateColumns();
+      setFinishPosition({ row: 10, col: newNumColumns - 5 });
+      if (newNumColumns !== numColumns) {
+        setNodes(createInitialNodes(newNumColumns, 20));
       }
-      initialNodes.push(rowNodes);
-    }
+    };
 
-    setNodes(initialNodes);
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [isRestartDisabled]);
 
   // Gets the node type on mouse down
@@ -92,7 +89,7 @@ function Grid() {
         !node.wall &&
         !_.isEqual({ row, col }, startPosition)
       ) {
-        setFinsihPosition({ row: node.row, col: node.col });
+        setFinishPosition({ row: node.row, col: node.col });
       }
     }
   };
@@ -117,8 +114,8 @@ function Grid() {
   };
 
   const startAlgorithm = async () => {
-    let visitedNodesInOrder = []
-    if (algorithms.hasOwnProperty(algorithmName)){
+    let visitedNodesInOrder = [];
+    if (algorithms.hasOwnProperty(algorithmName)) {
       switch (algorithmName) {
         case "DIJKSTRA":
           visitedNodesInOrder = dijkstra(nodes, startPosition, finishPosition);
@@ -152,7 +149,7 @@ function Grid() {
     setIsVisButnDisabled(true);
     setMouseState({ isMouseDown: false, nodeType: "" });
     updateIconsAnimation("icons-pointer-event");
-    
+
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(
       nodes[finishPosition.row][finishPosition.col]
     );
@@ -194,9 +191,10 @@ function Grid() {
   };
 
   const restartAlgorithm = () => {
-    clearAnimation();
-    setIsVisButnDisabled(false);
-    updateIconsAnimation("icons-animation");
+      console.log("HEEEE:::)")
+      clearAnimation();
+      setIsVisButnDisabled(false);
+      updateIconsAnimation("icons-animation");
   };
 
   const clearAnimation = () => {
@@ -275,3 +273,31 @@ function Grid() {
 }
 
 export default Grid;
+
+
+const calculateColumns = () => {
+  const screenWidth = window.innerWidth;
+  const columnWidth = 24.5;
+  return Math.floor(screenWidth / columnWidth);
+};
+
+const createInitialNodes = (numColumns, numRows) => {
+  const initialNodes = [];
+  for (let row = 0; row < numRows; row++) {
+    const rowNodes = [];
+    for (let col = 0; col < numColumns; col++) {
+      const currentNode = {
+        col,
+        row,
+        distance: Infinity,
+        previousNode: null,
+        wall: false,
+        heuristic: Infinity,
+        fScore: Infinity,
+      };
+      rowNodes.push(currentNode);
+    }
+    initialNodes.push(rowNodes);
+  }
+  return initialNodes;
+};
