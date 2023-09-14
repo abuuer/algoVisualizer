@@ -4,7 +4,7 @@ import {
   sortUnvisitedNodes,
 } from "./algoHelpers";
 
-export function astar(nodes, startPosition, finishPosition) {
+export function heuristicAlgorithm(nodes, startPosition, finishPosition, algoName) {
     let unvisitedNodes = getAllNodes(nodes);
     let startNode = nodes[startPosition.row][startPosition.col];
     let finishNode = nodes[finishPosition.row][finishPosition.col];
@@ -13,7 +13,8 @@ export function astar(nodes, startPosition, finishPosition) {
     startNode.fScore = startNode.distance + startNode.heuristic;
     let visitedNodes = [];
     while (unvisitedNodes.length) {
-      sortUnvisitedNodes(unvisitedNodes, "fScore");
+      if (algoName === "astar") sortUnvisitedNodes(unvisitedNodes, "fScore");
+      if (algoName === "gbfs") sortUnvisitedNodes(unvisitedNodes, "heuristic");
       const closestNode = unvisitedNodes.shift();
       if (closestNode.wall) continue;
       if (closestNode.fScore === Infinity) return visitedNodes;

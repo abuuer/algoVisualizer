@@ -3,7 +3,7 @@ import "./Grid.css";
 import {
   dijkstra,
 } from "../../algorithms/dijkstra";
-import { astar } from "../../algorithms/astar";
+import { heuristicAlgorithm } from "../../algorithms/heuristicAlgorithm";
 import { bfs } from "../../algorithms/bfs";
 import { dfs } from "../../algorithms/dfs";
 import { getNodesInShortestPathOrder } from "../../algorithms/algoHelpers";
@@ -124,13 +124,26 @@ function Grid() {
           visitedNodesInOrder = dijkstra(nodes, startPosition, finishPosition);
           break;
         case "AS":
-          visitedNodesInOrder = astar(nodes, startPosition, finishPosition);
+          visitedNodesInOrder = heuristicAlgorithm(
+            nodes,
+            startPosition,
+            finishPosition,
+            "astar"
+          );
           break;
         case "BFS":
           visitedNodesInOrder = bfs(nodes, startPosition, finishPosition);
           break;
         case "DFS":
           visitedNodesInOrder = dfs(nodes, startPosition, finishPosition);
+          break;
+        case "GBFS":
+          visitedNodesInOrder = heuristicAlgorithm(
+            nodes,
+            startPosition,
+            finishPosition,
+            "gbfs"
+          );
           break;
         default:
           break;
