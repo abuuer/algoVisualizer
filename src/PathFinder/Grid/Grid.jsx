@@ -5,6 +5,7 @@ import {
 } from "../../algorithms/dijkstra";
 import { astar } from "../../algorithms/astar";
 import { bfs } from "../../algorithms/bfs";
+import { dfs } from "../../algorithms/dfs";
 import { getNodesInShortestPathOrder } from "../../algorithms/algoHelpers";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { lightGreen, deepOrange } from "@mui/material/colors";
@@ -47,7 +48,7 @@ function Grid() {
           previousNode: null,
           wall: false,
           heuristic: Infinity,
-          sum_h_distance: Infinity,
+          fScore: Infinity,
         };
         rowNodes.push(currentNode);
       }
@@ -127,6 +128,9 @@ function Grid() {
           break;
         case "BFS":
           visitedNodesInOrder = bfs(nodes, startPosition, finishPosition);
+          break;
+        case "DFS":
+          visitedNodesInOrder = dfs(nodes, startPosition, finishPosition);
           break;
         default:
           break;

@@ -34,9 +34,18 @@ function getUnvisitedNeighbors(closestNode, nodes) {
   return neighbors.filter((neighbor) => !neighbor.isVisited);
 }
 
+function updateNeighborsPrevNode(closestNode, nodes) {
+  const unvisitedNeighbors = getUnvisitedNeighbors(closestNode, nodes);
+  for (const neighbor of unvisitedNeighbors) {
+    neighbor.previousNode = closestNode;
+  }
+  return unvisitedNeighbors;
+}
+
 export {
   getNodesInShortestPathOrder,
   getAllNodes,
   sortUnvisitedNodes,
   getUnvisitedNeighbors,
+  updateNeighborsPrevNode,
 };

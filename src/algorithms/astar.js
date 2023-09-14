@@ -9,14 +9,14 @@ export function astar(nodes, startPosition, finishPosition) {
     let startNode = nodes[startPosition.row][startPosition.col];
     let finishNode = nodes[finishPosition.row][finishPosition.col];
     startNode.distance = 0;
-    startNode.sum_h_distance = 0;
-    startNode.heuristic = 0;
+    startNode.heuristic = heuristic(startNode, finishNode);
+    startNode.fScore = startNode.distance + startNode.heuristic;
     let visitedNodes = [];
     while (unvisitedNodes.length) {
-      sortUnvisitedNodes(unvisitedNodes, "sum_h_distance");
+      sortUnvisitedNodes(unvisitedNodes, "fScore");
       const closestNode = unvisitedNodes.shift();
       if (closestNode.wall) continue;
-      if (closestNode.sum_h_distance === Infinity) return visitedNodes;
+      if (closestNode.fScore === Infinity) return visitedNodes;
       closestNode.isVisited = true;
       visitedNodes.push(closestNode);
       if (closestNode === finishNode) return visitedNodes;
@@ -29,8 +29,8 @@ function updateUnvisitedNeighbors(closestNode, nodes, finishNode) {
   const unvisitedNeighbors = getUnvisitedNeighbors(closestNode, nodes);
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance = closestNode.distance + 1;
-    neighbor.heuristic = heuristic(closestNode, finishNode);
-    neighbor.sum_h_distance = neighbor.distance + neighbor.heuristic;
+    neighbor.heuristic = heuristic(neighbor, finishNode);
+    neighbor.fScore = neighbor.distance + neighbor.heuristic;
     neighbor.previousNode = closestNode;
   }
 }

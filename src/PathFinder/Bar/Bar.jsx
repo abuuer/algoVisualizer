@@ -37,8 +37,8 @@ function Bar(props) {
             <option value="DIJKSTRA">Dijkstra's Algorithm</option>
             <option value="AS">A* Search</option>
             <option value="BFS">Breadth-first search</option>
-            {/* <option value="DFS">Depth-first search</option>
-            <option value="GBFS">Greedy Best-First Search</option> */}
+            <option value="DFS">Depth-first search</option>
+            {/* <option value="GBFS">Greedy Best-First Search</option> */}
           </select>
           <div className="slider">
             Speed:
