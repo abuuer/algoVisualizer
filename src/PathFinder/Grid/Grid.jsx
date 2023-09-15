@@ -19,10 +19,15 @@ const algorithms = {
   GBFS: "Greedy Best-First Search",
 };
 
+
+
 function Grid() {
   const [nodes, setNodes] = useState([]);
   const [startPosition, setStartPosition] = useState({ row: 10, col: 5 });
-  const [finishPosition, setFinishPosition] = useState({ row: 10, col: 45 });
+  const [finishPosition, setFinishPosition] = useState({
+    row: 10,
+    col: numColumns - 5,
+  });
   const [mouseState, setMouseState] = useState({
     isMouseDown: false,
     nodeType: "",
@@ -34,9 +39,8 @@ function Grid() {
 
 
   useEffect(() => {
-    const numColumns = calculateColumns();
+    
 
-    setFinishPosition({ row: 10, col: numColumns - 5 });
     setNodes(createInitialNodes(numColumns, 20));
 
     const handleResize = () => {
@@ -280,6 +284,8 @@ const calculateColumns = () => {
   const columnWidth = 24.5;
   return Math.floor(screenWidth / columnWidth);
 };
+
+const numColumns = calculateColumns();
 
 const createInitialNodes = (numColumns, numRows) => {
   const initialNodes = [];

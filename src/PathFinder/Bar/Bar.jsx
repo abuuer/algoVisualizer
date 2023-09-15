@@ -84,9 +84,9 @@ function Bar(props) {
           </Collapse>
         </Box>
 
-        <div className="select">
+        <div className="select-menu">
           <select
-            className="select-menu"
+            className="select"
             disabled={isVisButnDisabled}
             onChange={(event) => setAlgorithmName(event.target.value)}
           >

@@ -1,144 +1,144 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    display: table;
-    width: 100%;
-    height: 100%;
-    background-color: #171717;
-    color: #000;
-    position: relative;
-    font-family: 'Dosis', sans-serif;
-    margin: 0;
-    padding: 0;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    min-height: 100vh;
+  display: table;
+  width: 100%;
+  height: 100%;
+  background-color: #171717;
+  color: #000;
+  position: relative;
+  font-family: "Dosis", sans-serif;
+  margin: 0;
+  padding: 0;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh;
 }
 
 .line {
-    position: absolute;
-    width: 1px;
-    height: 100%;
-    top: 0;
-    left: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
 }
 
 .line::after {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 15vh;
-    width: 100%;
-    top: -50%;
-    left: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
-    animation: drop 7s 0s infinite;
-    animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
 }
 
 .line:nth-child(1) {
-    margin-left: -25%;
+  margin-left: -25%;
 }
 
 .line:nth-child(1)::after {
-    animation-delay: 2s;
+  animation-delay: 2s;
 }
 
 .line:nth-child(3) {
-    margin-left: 25%;
+  margin-left: 25%;
 }
 
 .line:nth-child(3)::after {
-    animation-delay: 2.5s;
+  animation-delay: 2.5s;
 }
 
 @keyframes drop {
-    0% {
-        top: -50%;
-    }
+  0% {
+    top: -50%;
+  }
 
-    100% {
-        top: 110%;
-    }
+  100% {
+    top: 110%;
+  }
 }
 .grid {
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 10px;
 }
 
 .node {
-    display: inline-block;
+  display: inline-block;
 }
 
 .row {
-    height: 25px;
+  height: 25px;
 }
 
 .node {
-    width: 23px;
-    height: 25px;
-    outline: 1px solid #63617a;
+  width: 23px;
+  height: 25px;
+  outline: 1px solid #63617a;
 }
 
 @media only screen and (max-width: 900px) {
-
-    /* hide element on small screens */
-    .grid {
-        text-align: center;
-    }
-    .node {
-    width: 22px;
+  /* hide element on small screens */
+  .grid {
+    text-align: center;
+  }
+  .node {
+    width: 21.9px;
     height: 25px;
     outline: 1px solid #63617a;
-}
-
+  }
 }
 
 .icon {
-    position: absolute;
-
+  position: absolute;
 }
 
 .icons-animation {
-    animation: jump 1s infinite;
+  animation: jump 1s infinite;
 }
 
 .css-1cy2ic9-MuiSvgIcon-root {
-    margin-top: 2px;
-    margin-left: 2px;
-
+  margin-top: 2px;
+  margin-left: 2px;
 }
 
 @keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-2px);
-    }
+  50% {
+    transform: translateY(-2px);
+  }
 }
 
 .finish-node {
-    background-color: green;
+  background-color: green;
 }
 .current-node {
-animation-name: glowingEffect;
+  animation-name: glowingEffect;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
@@ -149,99 +149,105 @@ animation-name: glowingEffect;
   opacity: 0.8;
 }
 @keyframes glowingEffect {
-    0% {
-        box-shadow: 0 0 5px 2px rgba(128, 231, 60, 0.7);
-        /* Initial shadow */
-    }
+  0% {
+    box-shadow: 0 0 5px 2px rgba(128, 231, 60, 0.7);
+    /* Initial shadow */
+  }
 
-    50% {
-        box-shadow: 0 0 10px 5px rgba(128, 231, 60, 0.9);
-        /* Intermediate shadow */
-    }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(128, 231, 60, 0.9);
+    /* Intermediate shadow */
+  }
 
-    100% {
-        box-shadow: 0 0 5px 2px rgba(128, 231, 60, 0.7);
-        /* Final shadow */
-    }
+  100% {
+    box-shadow: 0 0 5px 2px rgba(128, 231, 60, 0.7);
+    /* Final shadow */
+  }
 }
 .node-visited {
-    animation-name: visitedAnimation;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-    background-color: #34495e;
-    color: #ecf0f1;
-    opacity: 0.8;
+  animation-name: visitedAnimation;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  background-color: #34495e;
+  color: #ecf0f1;
+  opacity: 0.8;
 }
 
 @keyframes visitedAnimation {
-    0% {
-        background-color: #34495e;
-        color: #ecf0f1;
-        opacity: 0.8;
-    }
+  0% {
+    background-color: #34495e;
+    color: #ecf0f1;
+    opacity: 0.8;
+  }
 
-    25% {
-        background-color: #2c3e50;
-        color: #d5dbdb;
-        opacity: 0.7;
-    }
+  25% {
+    background-color: #2c3e50;
+    color: #d5dbdb;
+    opacity: 0.7;
+  }
 
-    50% {
-        background-color: #34495e;
-        color: #ecf0f1;
-        opacity: 0.8;
-    }
+  50% {
+    background-color: #34495e;
+    color: #ecf0f1;
+    opacity: 0.8;
+  }
 
-    75% {
-        background-color: #2c3e50;
-        color: #d5dbdb;
-        opacity: 0.7;
-    }
+  75% {
+    background-color: #2c3e50;
+    color: #d5dbdb;
+    opacity: 0.7;
+  }
 
-    100% {
-        background-color: #34495e;
-        color: #ecf0f1;
-        opacity: 0.8;
-    }
+  100% {
+    background-color: #34495e;
+    color: #ecf0f1;
+    opacity: 0.8;
+  }
 }
 
 .node-wall {
-    background-color: #bd5858;
-    transition: background-color 0.3s ease;
+  background-color: #bd5858;
+  transition: background-color 0.3s ease;
 }
 
 .node-shortest-path {
-    animation-name: shortestPath;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-in-out;
-    animation-delay: 0;
-    animation-direction: alternate;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
+  animation-name: shortestPath;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
 }
 
 @keyframes shortestPath {
-    0% {
-        transform: scale(0.6);
-        background-color: rgba(109, 103, 228, 0.623);
-    }
+  0% {
+    transform: scale(0.6);
+    background-color: rgba(109, 103, 228, 0.623);
+  }
 
-    50% {
-        transform: scale(1.2);
-        background-color: rgba(70, 194, 203, 0.849);
-    }
+  50% {
+    transform: scale(1.2);
+    background-color: rgba(70, 194, 203, 0.849);
+  }
 
-    100% {
-        transform: scale(1);
-        background-color: rgb(235, 240, 142);
-    }
+  100% {
+    transform: scale(1);
+    background-color: rgb(235, 240, 142);
+  }
 }
 
 .icons-pointer-event {
-    pointer-events: none;
-    opacity: 0.6;
+  pointer-events: none;
+  opacity: 0.6;
 }
+
+/* @media (max-width: 900px) {
+  .grid {
+    padding: 0 20px 0 20px;
+  }
+} */

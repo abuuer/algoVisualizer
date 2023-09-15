@@ -5,30 +5,10 @@
   margin: 0 29px;
 }
 
-@media only screen and (max-width: 900px) {
-  /* hide element on small screens */
-  .bar {
-    display: flex;
-    flex-direction: column;
-  }
-  .select {
-    display: flex;
-    flex-direction: column;
-  }
-  .slider {
-    text-align: center;
-    margin: 10px 0 !important;
-  }
-  .buttons {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .buttons {
   display: flex;
 }
-.select {
+.select-menu {
   display: flex;
 }
 .slider {
@@ -87,12 +67,6 @@
   cursor: default;
 }
 
-@media (min-width: 768px) {
-  .button {
-    padding: 12px 50px;
-  }
-}
-
 :root {
   --glass: #63617a;
   --glass-icon: #63617ac4;
@@ -129,4 +103,45 @@ select:focus {
 
 select::-ms-expand {
   display: none;
+}
+
+@media (max-width: 900px) {
+  .bar {
+    margin: 0;
+  }
+  .slider {
+    width: 120px;
+    padding: 0px 10px;
+  }
+  .button {
+    padding: 10px 20px;
+  }
+  .select-menu {
+    display: flex;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .bar {
+    margin: 0;
+  }
+
+  select{
+    width: 10em;
+    height: 2.5em;
+    margin-top: 5px;
+  }
+  .slider {
+    width: 100px;
+    padding: 0px 10px;
+    margin: 0 5px;
+  }
+  .button {
+    padding: 8px 20px;
+    margin-bottom: 5px;
+  }
+  .select-menu {
+    display: flex;
+  }
 }
