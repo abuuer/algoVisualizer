@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "./Grid.css";
-import { dijkstra } from "../../algorithms/dijkstra";
-import { heuristicAlgorithm } from "../../algorithms/heuristicAlgorithm";
-import { bfs } from "../../algorithms/bfs";
-import { dfs } from "../../algorithms/dfs";
-import { getNodesInShortestPathOrder } from "../../algorithms/algoHelpers";
+import { dijkstra } from "../algorithms/dijkstra";
+import { heuristicAlgorithm } from "../algorithms/heuristicAlgorithm";
+import { bfs } from "../algorithms/bfs";
+import { dfs } from "../algorithms/dfs";
+import { getNodesInShortestPathOrder } from "../algorithms/algoHelpers";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { lightGreen, deepOrange } from "@mui/material/colors";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
