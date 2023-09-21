@@ -31,14 +31,22 @@ function Bar(props) {
     setAlgorithmSpeed,
     boxTextFor,
     algorithms,
+    sliderParams,
+    updateRectangles,
   } = props;
 
   const [open, setOpen] = useState(true);
 
   const handleAlgorithmSpeed = (e, value) => {
-    if (speed.hasOwnProperty(value)) {
-      setAlgorithmSpeed(speed[value]);
+    if (boxTextFor === "pathFinding"){
+      if (speed.hasOwnProperty(value)) {
+        setAlgorithmSpeed(speed[value]);
+      }
     }
+    if (boxTextFor === "sorting") {
+        updateRectangles(value);
+    }
+      
   };
   return (
     <div>
@@ -103,19 +111,18 @@ function Bar(props) {
             ))}
           </select>
           <div className="slider">
-            Speed:
+            {sliderParams.label}:
             <ThemeProvider theme={btnTheme}>
               <Slider
-                aria-label="Speed"
+                aria-label={sliderParams.label}
                 // getAriaValueText={valuetext}
                 valueLabelDisplay="off"
-                step={1}
-                min={1}
-                max={3}
-                defaultValue={3}
+                step={sliderParams.step}
+                min={sliderParams.min}
+                max={sliderParams.max}
+                defaultValue={sliderParams.max}
                 color="primary"
                 disabled={isVisButnDisabled}
-                marks
                 onChange={handleAlgorithmSpeed}
               />
             </ThemeProvider>

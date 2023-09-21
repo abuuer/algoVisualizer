@@ -19,8 +19,6 @@ const algorithms = {
   GBFS: "Greedy Best-First Search",
 };
 
-
-
 function Grid() {
   const [nodes, setNodes] = useState([]);
   const [startPosition, setStartPosition] = useState({ row: 10, col: 5 });
@@ -37,10 +35,7 @@ function Grid() {
   const [algorithmName, setAlgorithmName] = useState("DIJKSTRA");
   const [algorithmSpeed, setAlgorithmSpeed] = useState(10);
 
-
   useEffect(() => {
-    
-
     setNodes(createInitialNodes(numColumns, 20));
 
     const handleResize = () => {
@@ -195,10 +190,10 @@ function Grid() {
   };
 
   const restartAlgorithm = () => {
-      console.log("HEEEE:::)")
-      clearAnimation();
-      setIsVisButnDisabled(false);
-      updateIconsAnimation("icons-animation");
+    console.log("HEEEE:::)");
+    clearAnimation();
+    setIsVisButnDisabled(false);
+    updateIconsAnimation("icons-animation");
   };
 
   const clearAnimation = () => {
@@ -232,6 +227,12 @@ function Grid() {
           setAlgorithmSpeed={setAlgorithmSpeed}
           boxTextFor="pathFinding"
           algorithms={algorithms}
+          sliderParams={{
+            label: "Speed",
+            step: 1,
+            min: 1,
+            max: 3,
+          }}
         ></Bar>
         <div className="nodes">
           {nodes.map((row, rowIndex) => (
@@ -274,7 +275,6 @@ function Grid() {
 }
 
 export default Grid;
-
 
 const calculateColumns = () => {
   const screenWidth = window.innerWidth;
