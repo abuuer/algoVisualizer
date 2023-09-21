@@ -1,8 +1,8 @@
 .bar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 29px;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
 }
 
 .buttons {

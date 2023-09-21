@@ -222,11 +222,6 @@ function Grid() {
 
   return (
     <div className="container">
-      <div className="line"></div>
-      <div className="line"></div>
-      <div className="line"></div>
-      <div className="line"></div>
-      <div className="line"></div>
       <div className="grid">
         <Bar
           startAlgorithm={startAlgorithm}
@@ -235,8 +230,10 @@ function Grid() {
           isVisButnDisabled={isVisButnDisabled}
           isRestartDisabled={isRestartDisabled}
           setAlgorithmSpeed={setAlgorithmSpeed}
+          boxTextFor="pathFinding"
+          algorithms={algorithms}
         ></Bar>
-        <div>
+        <div className="nodes">
           {nodes.map((row, rowIndex) => (
             <div key={rowIndex} className="row">
               {row.map((node, nodeIndex) => (

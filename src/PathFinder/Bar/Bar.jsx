@@ -29,6 +29,8 @@ function Bar(props) {
     isVisButnDisabled,
     isRestartDisabled,
     setAlgorithmSpeed,
+    boxTextFor,
+    algorithms,
   } = props;
 
   const [open, setOpen] = useState(true);
@@ -41,48 +43,52 @@ function Bar(props) {
   return (
     <div>
       <div className="bar">
-        <Box
-          style={{
-            width: "45%",
-            position: "fixed",
-            "margin-left": 10,
-            top: 100,
-            opacity: 0.9,
-            whiteSpace: "pre-line",
-            textAlign: "left",
-          }}
-        >
-          <Collapse in={open}>
-            <ThemeProvider theme={alertTheme}>
-              <Alert
-                severity="info"
-                icon={false}
-                action={
-                  <HighlightOffIcon
-                    aria-label="close"
-                    fontSize="small"
-                    color="inherit"
-                    onClick={() => {
-                      setOpen(false);
-                    }}
-                  ></HighlightOffIcon>
-                }
-                sx={{ mb: 2 }}
-              >
-                Drag and drop the start and finish icons to different cells.
-                {"\n"}
-                Place obstacles on the grid by clicking on the cells.{"\n"}
-                Choose one of the path-finding algorithms from the dropdown
-                menu.{"\n"}
-                Use the slider to adjust the speed of the algorithm
-                visualization.{"\n"}
-                Click the "Visualize" button to start the algorithm.{"\n"}
-                To start a new visualization, click the "Restart" button and
-                repeat the process.
-              </Alert>
-            </ThemeProvider>
-          </Collapse>
-        </Box>
+        {boxTextFor === "pathFinding" && (
+          <Box
+            style={{
+              width: "45%",
+              position: "fixed",
+              "margin-left": 10,
+              top: 100,
+              opacity: 0.9,
+              whiteSpace: "pre-line",
+              textAlign: "left",
+            }}
+          >
+            <Collapse in={open}>
+              <ThemeProvider theme={alertTheme}>
+                <Alert
+                  severity="info"
+                  icon={false}
+                  action={
+                    <HighlightOffIcon
+                      aria-label="close"
+                      fontSize="small"
+                      color="inherit"
+                      onClick={() => {
+                        setOpen(false);
+                      }}
+                    ></HighlightOffIcon>
+                  }
+                  sx={{ mb: 2 }}
+                >
+                  <div>
+                    Drag and drop the start and finish icons to different cells.
+                    {"\n"}
+                    Place obstacles on the grid by clicking on the cells.{"\n"}
+                    Choose one of the path-finding algorithms from the dropdown
+                    menu.{"\n"}
+                    Use the slider to adjust the speed of the algorithm
+                    visualization.{"\n"}
+                    Click the "Visualize" button to start the algorithm.{"\n"}
+                    To start a new visualization, click the "Restart" button and
+                    repeat the process.
+                  </div>
+                </Alert>
+              </ThemeProvider>
+            </Collapse>
+          </Box>
+        )}
 
         <div className="select-menu">
           <select
@@ -90,11 +96,11 @@ function Bar(props) {
             disabled={isVisButnDisabled}
             onChange={(event) => setAlgorithmName(event.target.value)}
           >
-            <option value="DIJKSTRA">Dijkstra's Algorithm</option>
-            <option value="AS">A* Search</option>
-            <option value="BFS">Breadth-first search</option>
-            <option value="DFS">Depth-first search</option>
-            <option value="GBFS">Greedy Best-First Search</option>
+            {Object.entries(algorithms).map(([key, value]) => (
+              <option key={key} value={key}>
+                {value}
+              </option>
+            ))}
           </select>
           <div className="slider">
             Speed:
