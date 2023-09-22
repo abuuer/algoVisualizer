@@ -1,11 +1,14 @@
 .rectangles {
-  display: flex; 
+  display: flex;
   justify-content: center; /* Center horizontally */
   padding: 20px;
 }
 
 .rectangle {
   display: inline-block;
-  margin: 0 2px; /* Add 3px spacing on both sides */
   background-color: #63617a;
+}
+
+.rectangle-current {
+  background-color: #b67245;
 }

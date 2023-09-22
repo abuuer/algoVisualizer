@@ -38,15 +38,14 @@ function Bar(props) {
   const [open, setOpen] = useState(true);
 
   const handleAlgorithmSpeed = (e, value) => {
-    if (boxTextFor === "pathFinding"){
+    if (boxTextFor === "pathFinding") {
       if (speed.hasOwnProperty(value)) {
         setAlgorithmSpeed(speed[value]);
       }
     }
     if (boxTextFor === "sorting") {
-        updateRectangles(value);
+      updateRectangles(value);
     }
-      
   };
   return (
     <div>
@@ -116,11 +115,11 @@ function Bar(props) {
               <Slider
                 aria-label={sliderParams.label}
                 // getAriaValueText={valuetext}
-                valueLabelDisplay="off"
+                valueLabelDisplay={sliderParams.display}
                 step={sliderParams.step}
                 min={sliderParams.min}
                 max={sliderParams.max}
-                defaultValue={sliderParams.max}
+                defaultValue={sliderParams.min}
                 color="primary"
                 disabled={isVisButnDisabled}
                 onChange={handleAlgorithmSpeed}
