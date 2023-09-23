@@ -2,6 +2,7 @@ import "./Sorting.css";
 import Bar from "../PathFinder/Bar/Bar";
 import { useState, useEffect } from "react";
 import bubbleSort from "./algorithms/bubbleSort";
+import quickSort from "./algorithms/quickSort";
 
 const algorithms = {
   BS: "Bubble Sort",
@@ -25,7 +26,7 @@ function Sorting() {
   useEffect(() => {
     setRecWidth(getRecWidth());
     setRectangles(generateRectangles(rectanglesNumber));
-  }, [isRestartDisabled, rectanglesNumber]);
+  }, [rectanglesNumber]);
 
   const getRecWidth = () => {
     return Math.floor(window.innerWidth / (rectanglesNumber * 2));
@@ -35,54 +36,36 @@ function Sorting() {
     setRectanglesNumber(number);
   };
 
-  const startAlgorithm = () => {
+  const startAlgorithm = async () => {
     if (algorithms.hasOwnProperty(algorithmName)) {
-      let sortedrecs = [];
+      setIsVisButnDisabled(true);
       switch (algorithmName) {
         case "BS":
-          sortedrecs = bubbleSort(rectangles);
+          await bubbleSort(rectangles, setRectangles);
+          break;
+        case "QS":
+          quickSort(rectangles, 0, rectanglesNumber - 1);
           break;
         default:
           break;
       }
-      setIsVisButnDisabled(true);
-      animateBubbleSort(sortedrecs);
+
+      setIsRestartDisabled(false);
     }
   };
 
-  const animateBubbleSort = (arr) => {
-    let i = 0;
-    let rectanglesCopy = rectangles;
+  const restartAlgorithm = () => {
+    setIsVisButnDisabled(false);
+    setIsRestartDisabled(true);
+    clearAnimation();
+    setRectangles(generateRectangles(rectanglesNumber));
+  };
 
-    const animationInterval = () => {
-      if (i < arr.length) {
-        const element = arr[i];
-
-        // modifies current rectangle color
-        document.getElementById(`${element.currntRecIndx + 1}`).className =
-          "rectangle rectangle-current";
-
-        // new array with the swapped elements
-        const newArray = [
-          ...rectanglesCopy.slice(0, element.currntRecIndx),
-          ...element.swappedRecs,
-          ...rectanglesCopy.slice(element.currntRecIndx + 2),
-        ];
-        rectanglesCopy = newArray;
-
-        setRectangles(rectanglesCopy);
-
-        setTimeout(() => {
-          // removes the current rectangle color
-          document.getElementById(`${element.currntRecIndx + 1}`).className =
-            "rectangle";
-          i++;
-          animationInterval();
-        }, 5000 / rectanglesNumber);
-      }
-    };
-
-    animationInterval();
+  const clearAnimation = () => {
+    for (let i = 0; i < rectangles.length; i++) {
+      const element = document.getElementById(`${i}`);
+      element.className = "rectangle";
+    }
   };
 
   return (
@@ -90,7 +73,7 @@ function Sorting() {
       <div className="grid">
         <Bar
           startAlgorithm={startAlgorithm}
-          //   restartAlgorithm={restartAlgorithm}
+          restartAlgorithm={restartAlgorithm}
           setAlgorithmName={setAlgorithmName}
           isVisButnDisabled={isVisButnDisabled}
           isRestartDisabled={isRestartDisabled}
@@ -111,7 +94,7 @@ function Sorting() {
               id={index}
               className="rectangle"
               style={{
-                height: `${rectangle.height}px`,
+                height: `${rectangle}px`,
                 width: recWidth,
                 margin: `0 0.5px`,
               }}
@@ -128,7 +111,7 @@ export default Sorting;
 const generateRectangles = (rectanglesNumber) => {
   const initialRecs = [];
   for (let i = 0; i < rectanglesNumber; i++) {
-    const rect = { height: Math.floor(Math.random() * 450 + 50) };
+    const rect = Math.floor(Math.random() * 450 + 50);
     initialRecs.push(rect);
   }
   return initialRecs;

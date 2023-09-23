@@ -1,36 +1,29 @@
-export default function bubbleSort(recs) {
-  let animationArray = [];
-
-  let shallowrec = getValue(recs);
-  console.log(shallowrec);
-  for (let i = 0; i < shallowrec.length; i++) {
+export default async function bubbleSort(recs, setRectangles) {
+  for (let i = 0; i < recs.length; i++) {
     let swapped = false;
-    for (let j = 0; j < shallowrec.length - i - 1; j++) {
-      if (shallowrec[j] > shallowrec[j + 1]) {
-        // console.log(shallowrec);
-        let temp = shallowrec[j];
-        shallowrec[j] = shallowrec[j + 1];
-        shallowrec[j + 1] = temp;
-        animationArray.push({
-          currntRecIndx: j,
-          currntRec: temp,
-          round: i,
-          swappedRecs: [
-            { height: shallowrec[j] },
-            { height: shallowrec[j + 1] },
-          ],
-        });
-        swapped = true;
-      }
-    }
-    if (swapped === false) break;
-  }
-  //   console.log(shallowrec);
-  //   console.log(animationArray);
+    for (let j = 0; j < recs.length - i - 1; j++) {
+      document.getElementById(`${j}`).className = "rectangle rectangle-current";
 
-  return animationArray;
+      await swapWithDelay(recs, j, j + 1);
+      setRectangles([...recs]);
+      swapped = true;
+      document.getElementById(`${j}`).className = "rectangle";
+    }
+
+    if (!swapped) break;
+  }
 }
 
-const getValue = (recs) => {
-  return recs.map((obj) => obj.height);
+const swapWithDelay = async (recs, i, j) => {
+  const delay = 5000 / recs.length;
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (recs[i] > recs[j]) {
+        let temp = recs[i];
+        recs[i] = recs[j];
+        recs[j] = temp;
+      }
+      resolve();
+    }, delay);
+  });
 };
