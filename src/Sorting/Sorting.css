@@ -10,9 +10,13 @@
 }
 
 .rectangle-current {
-  background-color: #b67245;
+  background-color: #ff9b86;
 }
 
 .rectangle-pivot {
-  background-color: #49b134;
+  background-color: #00c893;
+}
+
+.rectangle-red {
+  background-color: #d58198;
 }

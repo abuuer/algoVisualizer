@@ -1,25 +1,17 @@
-export const swapNCompareWithDelay = async (recs, i, j) => {
-  const delay = 5000 / recs.length;
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      if (recs[i] > recs[j]) {
-        let temp = recs[i];
-        recs[i] = recs[j];
-        recs[j] = temp;
-      }
-      resolve();
-    }, delay);
-  });
+export const swap = async (recs, i, j) => {
+  let temp = recs[i];
+  recs[i] = recs[j];
+  recs[j] = temp;
 };
 
-export const swapWithDelay = async (recs, i, j) => {
-  const delay = 1000 / recs.length;
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      let temp = recs[i];
-      recs[i] = recs[j];
-      recs[j] = temp;
-      resolve();
-    }, delay);
-  });
+const getDelay = (recsNumber) => {
+  if (recsNumber <= 10) return 1500;
+  else if (recsNumber <= 220) return 8000 / recsNumber;
+  else if (recsNumber <= 340) return 3000 / recsNumber;
+  else if (recsNumber <= 440) return 2000 / recsNumber;
+  else return 1;
+};
+
+export const sleep = async (recsNumber) => {
+  return new Promise((resolve) => setTimeout(resolve, getDelay(recsNumber)));
 };

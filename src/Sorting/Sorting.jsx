@@ -49,7 +49,6 @@ function Sorting() {
         default:
           break;
       }
-
       setIsRestartDisabled(false);
     }
   };
