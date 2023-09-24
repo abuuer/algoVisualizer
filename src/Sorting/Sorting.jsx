@@ -44,7 +44,7 @@ function Sorting() {
           await bubbleSort(rectangles, setRectangles);
           break;
         case "QS":
-          quickSort(rectangles, 0, rectanglesNumber - 1);
+          await quickSort(rectangles, 0, rectanglesNumber - 1, setRectangles);
           break;
         default:
           break;
