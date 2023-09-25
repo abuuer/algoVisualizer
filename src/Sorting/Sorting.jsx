@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import bubbleSort from "./algorithms/bubbleSort";
 import quickSort from "./algorithms/quickSort";
 import mergeSort from "./algorithms/mergeSort";
+import heapSort from "./algorithms/heapsort";
 
 const algorithms = {
   BS: "Bubble Sort",
@@ -49,6 +50,9 @@ function Sorting() {
           break;
         case "MS":
           await mergeSort(rectangles, 0, rectanglesNumber - 1, setRectangles);
+          break;
+        case "HS":
+          await heapSort(rectangles, setRectangles);
           break;
         default:
           break;
