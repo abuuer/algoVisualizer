@@ -3,6 +3,7 @@ import Bar from "../PathFinder/Bar/Bar";
 import { useState, useEffect } from "react";
 import bubbleSort from "./algorithms/bubbleSort";
 import quickSort from "./algorithms/quickSort";
+import mergeSort from "./algorithms/mergeSort";
 
 const algorithms = {
   BS: "Bubble Sort",
@@ -46,6 +47,9 @@ function Sorting() {
         case "QS":
           await quickSort(rectangles, 0, rectanglesNumber - 1, setRectangles);
           break;
+        case "MS":
+          await mergeSort(rectangles, 0, rectanglesNumber - 1, setRectangles);
+          break;
         default:
           break;
       }
@@ -56,7 +60,7 @@ function Sorting() {
   const restartAlgorithm = () => {
     setIsVisButnDisabled(false);
     setIsRestartDisabled(true);
-    clearAnimation();
+    // clearAnimation();
     setRectangles(generateRectangles(rectanglesNumber));
   };
 
