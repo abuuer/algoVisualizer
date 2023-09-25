@@ -5,6 +5,7 @@ import bubbleSort from "./algorithms/bubbleSort";
 import quickSort from "./algorithms/quickSort";
 import mergeSort from "./algorithms/mergeSort";
 import heapSort from "./algorithms/heapsort";
+import selectionSort from "./algorithms/selectionSort";
 
 const algorithms = {
   BS: "Bubble Sort",
@@ -53,6 +54,9 @@ function Sorting() {
           break;
         case "HS":
           await heapSort(rectangles, setRectangles);
+          break;
+        case "SS":
+          await selectionSort(rectangles, setRectangles);
           break;
         default:
           break;
