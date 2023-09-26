@@ -6,6 +6,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Collapse from "@mui/material/Collapse";
 import "./Bar.css";
 import { useState } from "react";
+import data from "../../Common/data.json";
 
 const btnTheme = createTheme({
   palette: {
@@ -29,7 +30,7 @@ function Bar(props) {
     isVisButnDisabled,
     isRestartDisabled,
     setAlgorithmSpeed,
-    boxTextFor,
+    algorithmCategory,
     algorithms,
     sliderParams,
     updateRectangles,
@@ -38,65 +39,55 @@ function Bar(props) {
   const [open, setOpen] = useState(true);
 
   const handleAlgorithmSpeed = (e, value) => {
-    if (boxTextFor === "pathFinding") {
+    if (algorithmCategory === "pathFinding") {
       if (speed.hasOwnProperty(value)) {
         setAlgorithmSpeed(speed[value]);
       }
     }
-    if (boxTextFor === "sorting") {
+    if (algorithmCategory === "sorting") {
       updateRectangles(value);
     }
   };
   return (
     <div>
       <div className="bar">
-        {boxTextFor === "pathFinding" && (
-          <Box
-            style={{
-              width: "45%",
-              position: "fixed",
-              "margin-left": 10,
-              top: 100,
-              opacity: 0.9,
-              whiteSpace: "pre-line",
-              textAlign: "left",
-            }}
-          >
-            <Collapse in={open}>
-              <ThemeProvider theme={alertTheme}>
-                <Alert
-                  severity="info"
-                  icon={false}
-                  action={
-                    <HighlightOffIcon
-                      aria-label="close"
-                      fontSize="small"
-                      color="inherit"
-                      onClick={() => {
-                        setOpen(false);
-                      }}
-                    ></HighlightOffIcon>
-                  }
-                  sx={{ mb: 2 }}
-                >
-                  <div>
-                    Drag and drop the start and finish icons to different cells.
-                    {"\n"}
-                    Place obstacles on the grid by clicking on the cells.{"\n"}
-                    Choose one of the path-finding algorithms from the dropdown
-                    menu.{"\n"}
-                    Use the slider to adjust the speed of the algorithm
-                    visualization.{"\n"}
-                    Click the "Visualize" button to start the algorithm.{"\n"}
-                    To start a new visualization, click the "Restart" button and
-                    repeat the process.
-                  </div>
-                </Alert>
-              </ThemeProvider>
-            </Collapse>
-          </Box>
-        )}
-
+        <Box
+          style={{
+            width: "45%",
+            position: "fixed",
+            top: 105,
+            opacity: 0.8,
+            whiteSpace: "pre-line",
+            textAlign: "left",
+          }}
+        >
+          <Collapse in={open}>
+            <ThemeProvider theme={alertTheme}>
+              <Alert
+                severity="info"
+                icon={false}
+                action={
+                  <HighlightOffIcon
+                    aria-label="close"
+                    fontSize="small"
+                    color="inherit"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  ></HighlightOffIcon>
+                }
+                sx={{ mb: 2 }}
+              >
+                {algorithmCategory === "pathFinding" && (
+                  <div>{data.pathFindingDesc}</div>
+                )}
+                {algorithmCategory === "sorting" && (
+                  <div>{data.sortingDesc}</div>
+                )}
+              </Alert>
+            </ThemeProvider>
+          </Collapse>
+        </Box>
         <div className="select-menu">
           <select
             className="select"

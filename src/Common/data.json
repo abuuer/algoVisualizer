@@ -1,0 +1,4 @@
+{
+  "sortingDesc": "Select the sorting algorithm you want to visualize from the dropdown menu. \n Use the slider to adjust the array size / the visualization speed.\n Click the \"Visualize\" button to start the sorting algorithm. \n To start a new sorting visualization, click the \"Restart\" button and repeat the process.",
+  "pathFindingDesc": "Drag and drop the start and finish icons to different cells. \n Place obstacles on the grid by clicking on the cells. \n Choose one of the path-finding algorithms from the dropdown menu.\n Use the slider to adjust the speed of the algorithm visualization.\n Click the \"Visualize\" button to start the algorithm.\n To start a new visualization, click the \"Restart\" button and repeat the process."
+}

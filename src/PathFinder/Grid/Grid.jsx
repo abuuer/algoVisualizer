@@ -225,7 +225,7 @@ function Grid() {
           isVisButnDisabled={isVisButnDisabled}
           isRestartDisabled={isRestartDisabled}
           setAlgorithmSpeed={setAlgorithmSpeed}
-          boxTextFor="pathFinding"
+          algorithmCategory="pathFinding"
           algorithms={algorithms}
           sliderParams={{
             label: "Speed",

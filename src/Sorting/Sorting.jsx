@@ -88,7 +88,7 @@ function Sorting() {
           setAlgorithmName={setAlgorithmName}
           isVisButnDisabled={isVisButnDisabled}
           isRestartDisabled={isRestartDisabled}
-          boxTextFor="sorting"
+          algorithmCategory="sorting"
           algorithms={algorithms}
           sliderParams={{
             label: "Speed / Array size",
