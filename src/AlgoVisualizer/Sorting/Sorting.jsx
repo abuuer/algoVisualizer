@@ -1,5 +1,5 @@
 import "./Sorting.css";
-import Bar from "../PathFinder/Bar/Bar";
+import Bar from "../Bar/Bar";
 import { useState, useEffect } from "react";
 import bubbleSort from "./algorithms/bubbleSort";
 import quickSort from "./algorithms/quickSort";
@@ -7,6 +7,7 @@ import mergeSort from "./algorithms/mergeSort";
 import heapSort from "./algorithms/heapsort";
 import selectionSort from "./algorithms/selectionSort";
 import data from "../Common/data.json";
+import Footer from "../Footer/Footer";
 
 const algorithms = {
   BS: "Bubble Sort",
@@ -108,20 +109,12 @@ function Sorting() {
         </div>
       </div>
       {data[algorithmName] && (
-        <div className="desc">
-          <div className="title">{algorithms[algorithmName]}</div>
-          <div className="content">
-            <div>{data[algorithmName].desc}</div>
-            <div>
-              <h4>How It Works</h4>
-              {data[algorithmName].howItWorks}
-            </div>
-            <div>
-              <h4>Time Complexity</h4>
-              {data[algorithmName].timeComp}
-            </div>
-          </div>
-        </div>
+        <Footer
+          title={algorithms[algorithmName]}
+          desc={data[algorithmName].desc}
+          howItWorks={data[algorithmName].howItWorks}
+          timeComp={data[algorithmName].timeComp}
+        ></Footer>
       )}
     </div>
   );

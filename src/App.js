@@ -1,15 +1,14 @@
 import "./App.css";
-import Grid from "./PathFinder/Grid/Grid";
-import Home from "./Home/Home";
-import Sorting from "./Sorting/Sorting";
-import Lines from "./Common/Lines";
+import Grid from "./AlgoVisualizer/PathFinder/Grid";
+import Home from "./AlgoVisualizer/Home/Home";
+import Sorting from "./AlgoVisualizer/Sorting/Sorting";
+import Lines from "./AlgoVisualizer/Common/Lines";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-
 
 function App() {
   return (

@@ -6,7 +6,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Collapse from "@mui/material/Collapse";
 import "./Bar.css";
 import { useState } from "react";
-import data from "../../Common/data.json";
+import data from "../Common/data.json";
 
 const btnTheme = createTheme({
   palette: {

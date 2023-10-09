@@ -1,0 +1,22 @@
+.rectangles {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  padding: 20px;
+}
+
+.rectangle {
+  display: inline-block;
+  background-color: #63617a;
+}
+
+.rectangle-current {
+  background-color: #ff9b86;
+}
+
+.rectangle-pivot {
+  background-color: #00c893;
+}
+
+.rectangle-red {
+  background-color: #d58198;
+}
