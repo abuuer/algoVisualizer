@@ -6,6 +6,7 @@ import quickSort from "./algorithms/quickSort";
 import mergeSort from "./algorithms/mergeSort";
 import heapSort from "./algorithms/heapsort";
 import selectionSort from "./algorithms/selectionSort";
+import data from "../Common/data.json";
 
 const algorithms = {
   BS: "Bubble Sort",
@@ -21,6 +22,7 @@ function Sorting() {
   const [isRestartDisabled, setIsRestartDisabled] = useState(true);
   const [isVisButnDisabled, setIsVisButnDisabled] = useState(false);
   const [algorithmName, setAlgorithmName] = useState("BS");
+  // const abortController = new AbortController();
 
   const [recWidth, setRecWidth] = useState(
     Math.floor(window.innerWidth / (rectanglesNumber * 3))
@@ -68,15 +70,7 @@ function Sorting() {
   const restartAlgorithm = () => {
     setIsVisButnDisabled(false);
     setIsRestartDisabled(true);
-    // clearAnimation();
     setRectangles(generateRectangles(rectanglesNumber));
-  };
-
-  const clearAnimation = () => {
-    for (let i = 0; i < rectangles.length; i++) {
-      const element = document.getElementById(`${i}`);
-      element.className = "rectangle";
-    }
   };
 
   return (
@@ -113,6 +107,22 @@ function Sorting() {
           ))}
         </div>
       </div>
+      {data[algorithmName] && (
+        <div className="desc">
+          <div className="title">{algorithms[algorithmName]}</div>
+          <div className="content">
+            <div>{data[algorithmName].desc}</div>
+            <div>
+              <h4>How It Works</h4>
+              {data[algorithmName].howItWorks}
+            </div>
+            <div>
+              <h4>Time Complexity</h4>
+              {data[algorithmName].timeComp}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

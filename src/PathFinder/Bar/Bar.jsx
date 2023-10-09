@@ -79,10 +79,10 @@ function Bar(props) {
                 sx={{ mb: 2 }}
               >
                 {algorithmCategory === "pathFinding" && (
-                  <div>{data.pathFindingDesc}</div>
+                  <div>{data.pathFindingInstructions}</div>
                 )}
                 {algorithmCategory === "sorting" && (
-                  <div>{data.sortingDesc}</div>
+                  <div>{data.sortingInstructions}</div>
                 )}
               </Alert>
             </ThemeProvider>
