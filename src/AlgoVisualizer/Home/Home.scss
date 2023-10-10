@@ -1,0 +1,160 @@
+body {
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+p {
+  font-size: 1rem;
+  text-align: center;
+  padding: 0px 100px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.options {
+  display: flex;
+  gap: 20px;
+}
+
+.option-button {
+  border-radius: 10px;
+  background-color: #333;
+  color: #fff;
+  opacity: 0.8;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: #555;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 900px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+.wordCarousel {
+  font-size: 36px;
+  font-weight: 100;
+  color: #eee;
+  span {
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+    font-weight: bold;
+  }
+  div {
+    overflow: hidden;
+    position: relative;
+    float: right;
+    height: 95px;
+    font-weight: bold;
+    li {
+      font-size: 4.5rem;
+      padding: 0 10px;
+      height: 45px;
+      opacity: 0.5;
+      margin-bottom: 45px;
+      display: block;
+    }
+  }
+}
+
+
+.flip2 {
+  animation: flip2 6s cubic-bezier(0.23, 1, 0.32, 1.2) infinite;
+}
+
+.flip3 {
+  animation: flip3 8s cubic-bezier(0.23, 1, 0.32, 1.2) infinite;
+}
+
+@keyframes flip2 {
+  0% {
+    margin-top: -180px;
+  }
+
+  5% {
+    margin-top: -90px;
+  }
+
+  50% {
+    margin-top: -90px;
+  }
+
+  55% {
+    margin-top: 0px;
+  }
+
+  99.99% {
+    margin-top: 0px;
+  }
+
+  100% {
+    margin-top: -180px;
+  }
+}
+
+@keyframes flip3 {
+  0% {
+    margin-top: -270px;
+  }
+
+  5% {
+    margin-top: -180px;
+  }
+
+  33% {
+    margin-top: -180px;
+  }
+
+  38% {
+    margin-top: -90px;
+  }
+
+  66% {
+    margin-top: -90px;
+  }
+
+  71% {
+    margin-top: 0px;
+  }
+
+  99.99% {
+    margin-top: 0px;
+  }
+
+  100% {
+    margin-top: -270px;
+  }
+}
+

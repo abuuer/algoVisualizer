@@ -16,9 +16,9 @@ function App() {
       <Lines></Lines>
       <Routes>
         <Route path="/algoVisualizer" element={<Home />} />
-        <Route path="/path-finding" element={<Grid />} />
+        <Route path="/pathVisualizer" element={<Grid />} />
         <Route path="*" element={<Navigate to="/algoVisualizer" />} />
-        <Route path="/Sorting" element={<Sorting />} />
+        <Route path="/sortVisualizer" element={<Sorting />} />
       </Routes>
     </Router>
   );
