@@ -1,10 +1,10 @@
 # AlgoVisualizer
 
-AlgoVisualizer is a web application built with React that allows users to visualize various path-finding ans sorting algorithms to better understand their functionality and performance.
+AlgoVisualizer is a web application built with React that allows users to visualize various pathfinding and sorting algorithms to better understand their functionality and performance.
 
 ## Demo
 
-You can access a live demo of AlgoVisualizer at https://abuuer.github.io/algoVisualizer.
+You can access a live demo of AlgoVisualizer at https://algovisualizerapp.vercel.app.
 
 ![Path-Finding](public/PathFindingDemo.gif)
 ![Sorting](public/SortingDemo.gif)
