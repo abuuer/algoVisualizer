@@ -2,7 +2,7 @@
   font-family: Arial, sans-serif;
   opacity: 0.9;
   white-space: pre-line;
-  margin: 10px 20px;
+  margin: 10px 40px;
 }
 
 .title {
@@ -22,4 +22,9 @@
 
 .content h4 {
   padding: 5px 0px;
+}
+
+a {
+  color: #aba9bb;
+  text-decoration: none;
 }

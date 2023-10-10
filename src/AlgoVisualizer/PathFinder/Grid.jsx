@@ -10,6 +10,8 @@ import { lightGreen, deepOrange } from "@mui/material/colors";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import Bar from "../Bar/Bar";
 import _ from "lodash";
+import Footer from "../Footer/Footer";
+import data from "../Common/data.json";
 
 const algorithms = {
   DIJKSTRA: "Dijkstra's Algorithm",
@@ -270,6 +272,14 @@ function Grid() {
           ))}
         </div>
       </div>
+      {data[algorithmName] && (
+        <Footer
+          title={algorithms[algorithmName]}
+          desc={data[algorithmName].desc}
+          howItWorks={data[algorithmName].howItWorks}
+          timeComp={data[algorithmName].timeComp}
+        ></Footer>
+      )}
     </div>
   );
 }
