@@ -15,7 +15,6 @@ body {
 
 h1 {
   font-size: 4.5rem;
-  margin-bottom: 20px;
   opacity: 0.8;
 }
 
@@ -68,7 +67,6 @@ p {
   color: #eee;
   span {
     font-size: 4.5rem;
-    margin-bottom: 20px;
     opacity: 0.8;
     font-weight: bold;
   }
@@ -158,3 +156,14 @@ p {
   }
 }
 
+.footer {
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0;
+  a {
+    padding: 2px;
+  }
+}
