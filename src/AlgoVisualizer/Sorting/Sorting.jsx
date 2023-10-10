@@ -90,6 +90,7 @@ function Sorting() {
             step: 1,
             min: 5,
             max: 600,
+            auto: 5,
             display: "auto",
           }}
           updateRectangles={updateRectangles}

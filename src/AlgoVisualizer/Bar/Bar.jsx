@@ -110,7 +110,7 @@ function Bar(props) {
                 step={sliderParams.step}
                 min={sliderParams.min}
                 max={sliderParams.max}
-                defaultValue={sliderParams.min}
+                defaultValue={sliderParams.auto}
                 color="primary"
                 disabled={isVisButnDisabled}
                 onChange={handleAlgorithmSpeed}
